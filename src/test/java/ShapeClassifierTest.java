@@ -33,4 +33,28 @@ public class ShapeClassifierTest {
         String answer = s.evaluateGuess("Equilateral,Small,Yes,100,100,100");
         assertEquals("Yes", answer);
     }
+
+    @DisplayName("Incorrect Even/Odd Guess Test")
+    @Test
+    public void incorrectEvenOddGuess() {
+        ShapeClassifier s = new ShapeClassifier();
+        String answer = s.evaluateGuess("Equilateral,Large,No,100,100,100");
+        assertEquals("Even/Odd guess is incorrect. The perimeter is even.", answer);
+    }
+
+    @DisplayName("Edge Case: Small Shape with Perimeter Exactly 10")
+    @Test
+    public void edgeCaseSmallShape() {
+        ShapeClassifier s = new ShapeClassifier();
+        String answer = s.evaluateGuess("Scalene,Small,Yes,3,3,3");
+        assertEquals("Yes", answer);
+    }
+
+    @DisplayName("Edge Case: Perimeter Exactly 10 but Large Classification")
+    @Test
+    public void edgeCaseLargeSize() {
+        ShapeClassifier s = new ShapeClassifier();
+        String answer = s.evaluateGuess("Scalene,Large,No,100,100,100");
+        assertEquals("Yes", answer);
+    }
 }
